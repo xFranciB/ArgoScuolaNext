@@ -1,0 +1,24 @@
+{
+  "name": "hearot/argoscuolanext",
+  "description": "A client for ArgoScuolaNext APIs",
+  "license": "AGPLv3",
+  "homepage": "https://github.com/hearot/ArgoScuolaNext",
+  "keywords": ["school","scuola","php","scuolanext","argo","api"],
+  "authors": [
+    {
+      "name": "hearot",
+      "email": "gabriel@hearot.it",
+      "homepage": "https://hearot.it",
+      "role": "Developer"
+    }
+  ],
+  "type": "APIs Client",
+  "require": {
+    "php": ">5"
+  },
+  "autoload": {
+    "psr-0": {
+      "hearot\\ArgoScuolaNext\\": "src/"
+    }
+  },
+}
