@@ -12,7 +12,7 @@
       "role": "Developer"
     }
   ],
-  "type": "APIs Client",
+  "type": "client",
   "require": {
     "php": ">5"
   },
