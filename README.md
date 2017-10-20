@@ -1,7 +1,8 @@
 # ArgoScuolaNext API
 Programma che utilizza le API di ArgoScuolaNext per gestire e vedere le tue informazioni.
 
-[ArgoScuolaNext APIs in php](https://github.com/hearot/ArgoScuolaNext-php)
+[ArgoScuolaNext APIs in Python](https://github.com/hearot/ArgoScuolaNext-python)
+
 [English description of the client](README-en.md)
 
 ## Tabella dei contenuti
