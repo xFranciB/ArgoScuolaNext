@@ -18,7 +18,7 @@ class API
     const ARGO_ENDPOINT = 'https://www.portaleargo.it/famiglia/api/rest/';
     const ARGO_KEY = 'ax6542sdru3217t4eesd9';
     const ARGO_VERSION = '2.0.2';
-    public function __construct($schoolCode, $username, $password, $no_info = false)
+    public function __construct($schoolCode, $username, $password)
     {
         /**
          *  This method will log in you
@@ -31,7 +31,7 @@ class API
          */
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, self::ARGO_ENDPOINT . 'login?' . http_build_query(array('_dc' => round(microtime(true) * 1000))));
-        curl_setopt($ch, CURLOPT_HEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',  'x-cod-min: ' . $schoolCode, 'x-user-id: ' . $username, 'x-pwd: ' . $password));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',  'x-cod-min: ' . $schoolCode, 'x-user-id: ' . $username, 'x-pwd: ' . $password));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $request = curl_exec($ch);
@@ -42,20 +42,24 @@ class API
             $this->temponaryToken = json_decode($request, true)['token'];
             unset($ch);
             unset($request);
-            if (!$no_info) {
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, self::ARGO_ENDPOINT . 'schede?' . http_build_query(array('_dc' => round(microtime(true) * 1000))));
-                curl_setopt($ch, CURLOPT_HEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',  'x-cod-min: ' . $schoolCode, 'x-auth-token: ' . $this->temponaryToken));
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $request = curl_exec($ch);
-                if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
-                    foreach (json_decode($request, true) as $node => $content) {
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, self::ARGO_ENDPOINT . 'schede?' . http_build_query(array('_dc' => round(microtime(true) * 1000))));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',  'x-cod-min: ' . $schoolCode, 'x-auth-token: ' . $this->temponaryToken));
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $request = curl_exec($ch);
+            if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
+                foreach (json_decode($request, true)[0] as $node => $content) {
+                    if (is_array($node)) {
+                        foreach ($node as $subnode => $subcontent) {
+                            $this->{$node}->{$subnode} = $subcontent;
+                        }
+                    } else {
                         $this->{$node} = $content;
                     }
-                } else {
-                    throw new \hearot\ArgoScuolaNext\BadRequestException('Something went wrong. ' . curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $request);
                 }
+            } else {
+                throw new \hearot\ArgoScuolaNext\BadRequestException('Something went wrong. ' . curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . strip_tags($request));
             }
         } else {
             throw new \hearot\ArgoScuolaNext\LoginException('Wrong username, password or school code.');
@@ -89,7 +93,7 @@ class API
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) === 200) {
             return $request;
         } else {
-            throw new \hearot\ArgoScuolaNext\BadRequestException('Something went wrong. ' . curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . $request);
+            throw new \hearot\ArgoScuolaNext\BadRequestException('Something went wrong. ' . curl_getinfo($ch, CURLINFO_HTTP_CODE) . ' ' . strip_tags($request));
             return $request;
         }
     }
