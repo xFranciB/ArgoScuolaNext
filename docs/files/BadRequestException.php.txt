@@ -3,20 +3,19 @@
 namespace hearot\ArgoScuolaNext;
 
 /**
- *  LoginException for ArgoScuolaNext
+ *  BadRequestException for ArgoScuolaNext
  *
- *  This class is used to throw exception dued to a error in the login
+ *  This class is used to throw exception dued to a error in the request
  *
  * @author Hearot
  * @copyright 2017
  * @license GNU AGPL v3
  */
-class LoginException extends \Exception
+class BadRequestException extends \Exception
 {
     /**
-     *  This method will throw an hearot\ArgoScuolaNext\LoginException
+     *  This method will throw an hearot\ArgoScuolaNext\BadRequestException
      *
-     * @internal
      * @param string $message The message of the exception
      * @param int $code The code of the exception
      * @param string $previous Last Exception
@@ -37,3 +36,4 @@ class LoginException extends \Exception
         return __CLASS__ . ': [{' . $this->code . '}]: {' . $this->message . '}' . "\n";
     }
 }
+
