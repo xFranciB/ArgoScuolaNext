@@ -19,7 +19,7 @@ class API
     const ARGO_ENDPOINT = 'https://www.portaleargo.it/famiglia/api/rest/';
     /**
      * The key that the object will use to access to the server
-     * @var ARGO_VERSION
+     * @var ARGO_KEY
      */
     const ARGO_KEY = 'ax6542sdru3217t4eesd9';
     /**
