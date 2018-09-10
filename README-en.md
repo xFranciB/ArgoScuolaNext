@@ -3,6 +3,8 @@ Client that uses ArgoScuolaNext APIs to manage and view your informations on it.
 
 [ArgoScuolaNext APIs in Python](https://github.com/hearot/ArgoScuolaNext-python)
 
+[ArgoScuolaNext APIs in Go](https://github.com/hearot/ArgoScuolaNext-go)
+
 [Italian description of the client](README.md)
 
 ## Table of Contents
