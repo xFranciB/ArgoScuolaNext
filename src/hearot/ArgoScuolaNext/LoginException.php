@@ -27,6 +27,7 @@ class LoginException extends \Exception
         parent::__construct($message, $code, $previous);
         return true;
     }
+
     /**
      *  This will convert the Exception in a string
      *

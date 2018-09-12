@@ -3,7 +3,14 @@
   "description": "A client for ArgoScuolaNext APIs",
   "license": "AGPLv3",
   "homepage": "https://github.com/hearot/ArgoScuolaNext",
-  "keywords": ["school","scuola","php","scuolanext","argo","api"],
+  "keywords": [
+    "school",
+    "scuola",
+    "php",
+    "scuolanext",
+    "argo",
+    "api"
+  ],
   "authors": [
     {
       "name": "hearot",

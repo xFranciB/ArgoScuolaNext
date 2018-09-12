@@ -1,4 +1,5 @@
 <?php
+
 namespace hearot\ArgoScuolaNext;
 
 /**
@@ -27,6 +28,7 @@ class API
      * @var ARGO_VERSION
      */
     const ARGO_VERSION = '2.0.2';
+
     /**
      *  This method will log in you
      *
@@ -40,7 +42,7 @@ class API
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, self::ARGO_ENDPOINT . 'login?' . http_build_query(array('_dc' => round(microtime(true) * 1000))));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',  'x-cod-min: ' . $schoolCode, 'x-user-id: ' . $username, 'x-pwd: ' . $password));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 'x-cod-min: ' . $schoolCode, 'x-user-id: ' . $username, 'x-pwd: ' . $password));
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $request = curl_exec($ch);
@@ -53,7 +55,7 @@ class API
             unset($request);
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, self::ARGO_ENDPOINT . 'schede?' . http_build_query(array('_dc' => round(microtime(true) * 1000))));
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36',  'x-cod-min: ' . $schoolCode, 'x-auth-token: ' . $this->temponaryToken));
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 'x-cod-min: ' . $schoolCode, 'x-auth-token: ' . $this->temponaryToken));
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $request = curl_exec($ch);
@@ -74,6 +76,7 @@ class API
             throw new \hearot\ArgoScuolaNext\LoginException('Wrong username, password or school code.');
         }
     }
+
     /**
      *  This method will call a ArgoScuolaNext APIs Method
      *
@@ -85,6 +88,7 @@ class API
     {
         $ch = curl_init();
         $query = [];
+
         if (strtolower($name) == 'oggi') {
             if (isset($arguments['datGiorno'])) {
                 $query['datGiorno'] = $arguments['datGiorno'];
@@ -92,6 +96,7 @@ class API
                 $query['datGiorno'] = date('Y-m-d');
             }
         }
+
         $query['_dc'] = round(microtime(true) * 1000);
         curl_setopt($ch, CURLOPT_URL, self::ARGO_ENDPOINT . $name . '?' . http_build_query($query));
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('x-key-app: ' . self::ARGO_KEY, 'x-version: ' . self::ARGO_VERSION, 'user-agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36', 'x-auth-token: ' . $this->authToken, 'x-cod-min: ' . $this->codMin, 'x-prg-alunno: ' . $this->prgAlunno, 'x-prg-scheda: ' . $this->prgScheda, 'x-prg-scuola: ' . $this->prgScuola));
