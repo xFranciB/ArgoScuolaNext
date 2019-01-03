@@ -16,7 +16,7 @@ Client that uses ArgoScuolaNext APIs to manage and view your informations on it.
     - [Disciplinary notes](#disciplinary-notes)
     - [Daily marks](#daily-marks)
     - [Final marks](#final-marks)
-    - [Homework](#homework)
+    - [Homeworks](#homeworks)
     - [Lesson topics](#lesson-topics)
     - [Class reminder](#class-reminder)
     - [Class schedule](#class-schedule)
@@ -338,7 +338,7 @@ Example output:
          "codMin":"schoolCode\n)"
       }
    ]
-}g
+}
 ```
 
 ### Class reminder

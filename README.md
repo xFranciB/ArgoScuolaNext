@@ -336,7 +336,7 @@ Output d'esempio:
          "codMin":"schoolCode\n)"
       }
    ]
-}g
+}
 ```
 
 ### Promemoria
