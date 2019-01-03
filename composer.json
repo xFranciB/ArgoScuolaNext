@@ -21,7 +21,9 @@
   ],
   "type": "client",
   "require": {
-    "php": ">5"
+    "php": ">=7",
+    "ext-curl": "*",
+    "ext-json": "*"
   },
   "autoload": {
     "psr-0": {
