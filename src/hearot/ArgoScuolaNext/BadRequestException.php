@@ -8,8 +8,8 @@ namespace hearot\ArgoScuolaNext;
  *  This class is used to throw exception dued to a error in the request
  *
  * @author Hearot
- * @copyright 2017
- * @license GNU AGPL v3
+ * @copyright 2019
+ * @license AGPL-3.0-or-later
  */
 class BadRequestException extends \Exception
 {
