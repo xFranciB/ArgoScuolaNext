@@ -24,15 +24,17 @@ Client that uses ArgoScuolaNext APIs to manage and view your informations on it.
   - [3. Logout](#log-out)
 
 ## Installation
-You can easily install that module using Composer:
+To install this module, you need PHP and Composer installed on your computer.
+To install it, navigate to your project's folder and run the following command:
 ```bash
 composer require hearot/argoscuolanext
 ```
 
-Or, if you want to upgrade the module:
+Or, if you want to update your module:
 ```bash
 composer update
 ```
+After installing version 1.1 by hearot, you need to download the latest ArgoScuolaNext version from this repository (https://github.com/xFranciB/ArgoScuolaNext/releases), and replace the old files with the new ones in the folder: <project>/vendor/hearot/argoscuolanext/src/hearot/ArgoScuolaNext
 
 ## Import APIs
 You must use `require_once('vendor/autoload.php')` to import all argoscuolanext module from `vendor` directory.
