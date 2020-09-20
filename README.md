@@ -34,7 +34,7 @@ O, per aggiornare il modulo:
 ```bash
 composer update
 ```
-Dopo aver installato la versione 1.1 di hearot, è necessario scaricare l'ultima versione di ArgoScuolaNext da questa repository (https://github.com/xFranciB/ArgoScuolaNext/releases), e sostituire i file vecchi con quelli nuovi nella cartella: &ltprogetto&gt/vendor/hearot/argoscuolanext/src/hearot/ArgoScuolaNext
+Dopo aver installato la versione 1.1 di hearot, è necessario scaricare l'ultima versione di ArgoScuolaNext da questa repository (https://github.com/xFranciB/ArgoScuolaNext/releases), e sostituire i file vecchi con quelli nuovi nella cartella: [progetto]/vendor/hearot/argoscuolanext/src/hearot/ArgoScuolaNext
 
 ## Importare le API
 Devi usare `require_once('vendor/autoload.php')` per importare tutto il modulo dalla cartella in cui è situato, ovvero  `vendor`.
