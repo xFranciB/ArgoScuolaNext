@@ -34,7 +34,7 @@ Or, if you want to update your module:
 ```bash
 composer update
 ```
-After installing version 1.1 by hearot, you need to download the latest ArgoScuolaNext version from this repository (https://github.com/xFranciB/ArgoScuolaNext/releases), and replace the old files with the new ones in the folder: <project>/vendor/hearot/argoscuolanext/src/hearot/ArgoScuolaNext
+After installing version 1.1 by hearot, you need to download the latest ArgoScuolaNext version from this repository (https://github.com/xFranciB/ArgoScuolaNext/releases), and replace the old files with the new ones in the folder: [project]/vendor/hearot/argoscuolanext/src/hearot/ArgoScuolaNext
 
 ## Import APIs
 You must use `require_once('vendor/autoload.php')` to import all argoscuolanext module from `vendor` directory.
